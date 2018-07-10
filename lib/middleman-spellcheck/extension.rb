@@ -27,19 +27,19 @@ module Middleman
         total_misspelled = []
 
         filtered.each do |resource|
-          builder.say_status :spellcheck, "Running spell checker for #{resource.url}", :blue
+          builder.thor.say_status :spellcheck, "Running spell checker for #{resource.url}", :blue
           current_misspelled = spellcheck_resource(resource)
           current_misspelled.each do |misspell|
-            builder.say_status :misspell, error_message(misspell), :red
+            builder.thor.say_status :misspell, error_message(misspell), :red
           end
           total_misspelled += current_misspelled
         end
 
-        builder.say_status :spellcheck, "Spellchecks done. #{total_misspelled.length} misspelling(s) found.", :blue
+        builder.thor.say_status :spellcheck, "Spellchecks done. #{total_misspelled.length} misspelling(s) found.", :blue
 
         unless total_misspelled.empty? 
           if options.dontfail
-            builder.say_status :spellcheck, "dontfail is set! Builder will ignore misspellings.", :yellow
+            builder.thor.say_status :spellcheck, "dontfail is set! Builder will ignore misspellings.", :yellow
           else
             desc = "Build failed. There are spelling errors."
             raise Thor::Error, desc
