@@ -1,7 +1,9 @@
+require 'thor'
+
 module Middleman
   module Cli
     # This class provides a "spellcheck" command for the middleman CLI.
-    class Spellcheck < Thor
+    class Spellcheck < ::Thor
       include Thor::Actions
 
       check_unknown_options!
