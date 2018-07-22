@@ -3,7 +3,7 @@ require 'thor'
 module Middleman
   module Cli
     # This class provides a "spellcheck" command for the middleman CLI.
-    class Spellcheck < ::Thor
+    class Spellcheck < Thor::Group
       include Thor::Actions
 
       check_unknown_options!
@@ -115,6 +115,7 @@ module Middleman
         end
       end
 
+      Base.register(self, 'spellcheck', 'spellcheck FILE', 'spellcheck file on cli')
     end
   end
 end
